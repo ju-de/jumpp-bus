@@ -7,10 +7,10 @@ class App extends React.Component {
         <View title="jumpp">
           <p>Hello, World!</p>
 
-          <Button onTap={() => this.router().transitionTo('order')}>
+          <Button onTap={() => this.router().transitionTo('orders')}>
             Business View
           </Button>
-      
+
         </View>
 
         {this.props.child()}
