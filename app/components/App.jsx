@@ -1,14 +1,18 @@
 import { Reapp, React, NestedViewList, View, Button } from 'reapp-kit';
 
-class Home extends React.Component {
+class App extends React.Component {
   render() {
     return (
       <NestedViewList {...this.props.viewListProps}>
         <View title="jumpp">
           <p>Hello, World!</p>
 
-          <Button onTap={() => this.router().transitionTo('sub')}>
-            Go to sub view
+          <Button onTap={() => this.router().transitionTo('business')}>
+            Business View
+          </Button>
+
+          <Button onTap={() => this.router().transitionTo('customer')}>
+            Customer View
           </Button>
         </View>
 
@@ -18,7 +22,7 @@ class Home extends React.Component {
   }
 }
 
-export default Reapp(Home);
+export default Reapp(App);
 
 /*
  This is your root route. When you wrap it with Reapp()

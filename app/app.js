@@ -2,7 +2,8 @@ import './theme';
 import { router, route } from 'reapp-kit';
 
 router(require,
-  route('home', '/',
-    route('sub')
-  )
+  // creates dummy parent route
+  route('app', '/', { dir: '' },
+    route('business'),
+    route('customer'))
 );
