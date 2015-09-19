@@ -1,15 +1,23 @@
 import { Reapp, React, View, BackButton, Button, Modal, Container, Block, Card } from 'reapp-kit';
 
+import Firebase from 'firebase';
+import ReactFireMixin from 'reactfire';
 
 import reactMixin from 'react-mixin';
 
 // var states = {
 //   {id: '0', name: 'Order Received'},
 //   {id: '1', name: 'Start Order'},
-//   {id: '2', name: 'Finish'}
+//   {id: '2', name: 'Finish Order'}
 // }
 
-class Business extends React.Component {
+class Order extends React.Component {
+
+  componentDidMount(){
+    this.locationId = this.router().getCurrentQuery().location_id;
+    this.ref = new Firebase('https://jumpp.firebaseio.com/business/'+this.locationId);
+    this.bindAsArray(this.ref, 'business');
+  }
 
   render() {
 
@@ -17,13 +25,13 @@ class Business extends React.Component {
       <BackButton onTap={() => this.router().transitionTo('app')} />
 
     return (
-      <View {...this.props} title="Order Summary" titleLeft={backButton}>
+      <View {...this.props} title="Order #000" titleLeft={backButton}>
 
       <Container>
       <Block {...this.prop}>
-        <p>Literally Orders</p>
+        <p>Order Summary</p>
         <div {...this.props}>
-          <Card>ashdjkfhad</Card>
+          <Card title="Chicken Dinner">呢个呢个</Card>
           <Card>ashdjkfhad</Card>
           <Card>ashdjkfhad</Card>
         </div>
@@ -40,4 +48,6 @@ class Business extends React.Component {
   }
 }
 
-export default Business;
+reactMixin(Order.prototype, ReactFireMixin);
+
+export default Order;
