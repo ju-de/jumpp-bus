@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "react": "0.13.2",
+    "react-mixin": "^2.0.2",
     "reapp-kit": "^1.2.0"
   }
 }
