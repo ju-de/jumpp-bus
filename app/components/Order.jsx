@@ -5,7 +5,7 @@ import ReactFireMixin from 'reactfire';
 
 import reactMixin from 'react-mixin';
 
-status=[ "Received", "In Process", "Ready" ];
+var food=[ "Received", "In Process", "Ready" ];
 
 class Order extends React.Component {
 
@@ -14,7 +14,8 @@ class Order extends React.Component {
     this.ref = new Firebase('https://jumpp.firebaseio.com/business/'+this.locationId);
     this.bindAsArray(this.ref, 'business');
   }
-    state={ step: 0 };
+
+  state={ step: 0 };
 
   render() {
 
@@ -22,7 +23,7 @@ class Order extends React.Component {
       <BackButton onTap={() => this.router().transitionTo('app')} />
 
     return (
-      <View {...this.props} title={"Order "+status[this.state.step]} titleLeft={backButton}>
+      <View {...this.props} title={"Order "+food[this.state.step]} titleLeft={backButton}>
 
       <Container>
       <Block {...this.prop}>
