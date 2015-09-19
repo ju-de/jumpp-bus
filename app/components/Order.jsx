@@ -5,12 +5,6 @@ import ReactFireMixin from 'reactfire';
 
 import reactMixin from 'react-mixin';
 
-// var states = {
-//   {id: '0', name: 'Start Order'},
-//   {id: '1', name: 'Finish Order'},
-//   {id: '2', name: 'Restart Order'}
-// }
-
 
 class Order extends React.Component {
 
@@ -19,10 +13,9 @@ class Order extends React.Component {
     this.ref = new Firebase('https://jumpp.firebaseio.com/business/'+this.locationId);
     this.bindAsArray(this.ref, 'business');
   }
+    state={ step: 0 };
 
   render() {
-
-    this.state={ step: 0 };
 
     const backButton =
       <BackButton onTap={() => this.router().transitionTo('app')} />
@@ -34,9 +27,9 @@ class Order extends React.Component {
       <Block {...this.prop}>
         <p>Order Summary</p>
         <div {...this.props}>
-          <Card title="Chicken Dinner">呢个呢个</Card>
-          <Card>ashdjkfhad</Card>
-          <Card>ashdjkfhad</Card>
+          <Card title="Chicken dinner">呢个呢个</Card>
+          <Card title="The fuck is tofu even"> eSpicy </Card>
+          <Card title="Extra pickle">Just give them the pickle dude</Card>
         </div>
         <p>Total: $10.00</p>
       </Block>
@@ -47,7 +40,6 @@ class Order extends React.Component {
         <DottedViewList 
           scrollToStep={this.state.step}>
 
-          
             <Button chromeless onTap={() => this.setState({ step: 1 })}>Start Order</Button>
 
             <Button chromeless onTap={() => this.setState({ step: 2 })}>Finish Order</Button>
