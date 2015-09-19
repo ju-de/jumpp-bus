@@ -10,8 +10,8 @@ var food=[ "Received", "In Process", "Ready" ];
 class Order extends React.Component {
 
   componentDidMount(){
-    this.locationId = this.router().getCurrentQuery().location_id;
-    this.ref = new Firebase('https://jumpp.firebaseio.com/business/'+this.locationId);
+    this.orderId = this.router().getCurrentQuery().order;
+    this.ref = new Firebase('https://jumpp.firebaseio.com/business/'+this.orderId);
     this.bindAsArray(this.ref, 'business');
   }
 

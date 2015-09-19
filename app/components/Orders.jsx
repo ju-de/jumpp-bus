@@ -8,23 +8,29 @@ import reactMixin from 'react-mixin';
 class Orders extends React.Component {
 
   componentDidMount() {
+
     this.firebaseRef = new Firebase('https://jumpp.firebaseio.com/orders');
     this.bindAsArray(this.firebaseRef.limitToLast(25), 'businesses');
   }
 
+
   render() {
+
+    const backButton =
+      <BackButton onTap={() => this.router().transitionTo('app')} />
+
     return (
       <View {...this.props}>
         <NestedViewList {...this.props.viewListProps}>
-          <View>
-            <p>Hello, from the locations route!</p>
+          <View style={{textAlign: 'center'}}> 
+            <p>Click an order to see more details.</p>
             {
               this.state &&
               this.state.businesses &&
               this.state.businesses.map((obj) => {
                 return (
                   <Button onTap={() => this.router().transitionTo('order', null, { order: obj['.key'] })}>
-                    name: {obj.name}
+                    Order {obj.time}
                   </Button>
                 );
               })
