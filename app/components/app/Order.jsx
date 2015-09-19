@@ -11,8 +11,9 @@ class Order extends React.Component {
 
   componentDidMount(){
     this.orderId = this.router().getCurrentQuery().order;
-    this.ref = new Firebase('https://jumpp.firebaseio.com/business/'+this.orderId);
+    this.ref = new Firebase('https://jumpp.firebaseio.com/business/-JzZjUM48rtjWMzPBujS/orders/'+this.orderId);
     this.bindAsArray(this.ref, 'business');
+    console(this.ref);
   }
 
   state={ step: 0 };
@@ -29,9 +30,10 @@ class Order extends React.Component {
       <Block {...this.prop}>
         <p>Summary</p>
         <div {...this.props}>
-          <Card title="Chicken dinner">呢个呢个</Card>
-          <Card title="The fuck is tofu even"> eSpicy </Card>
-          <Card title="Extra pickle">Just give them the pickle dude</Card>
+
+          // <Card title="Chicken dinner">呢个呢个</Card>
+          // <Card title="The fuck is tofu even"> eSpicy </Card>
+          // <Card title="Extra pickle">Just give them the pickle dude</Card>
         </div>
         <p>Total: $10.00</p>
       </Block>
@@ -55,6 +57,8 @@ class Order extends React.Component {
       </Block>
       </Container>  
       </View>
+
+      // this.progress = this.state.step;
     );
   }
 }
