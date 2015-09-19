@@ -10,10 +10,7 @@ class App extends React.Component {
           <Button onTap={() => this.router().transitionTo('order')}>
             Business View
           </Button>
-
-          <Button onTap={() => this.router().transitionTo('customer')}>
-            Customer View
-          </Button>
+      
         </View>
 
         {this.props.child()}
