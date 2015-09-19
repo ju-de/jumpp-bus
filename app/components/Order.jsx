@@ -1,4 +1,4 @@
-import { Reapp, React, View, BackButton, Button, Modal, Container, Block, Card } from 'reapp-kit';
+import { Reapp, React, View, BackButton, Button, Modal, Container, Block, Card, Dots } from 'reapp-kit';
 
 import Firebase from 'firebase';
 import ReactFireMixin from 'reactfire';
@@ -40,6 +40,8 @@ class Order extends React.Component {
 
       <Block {...this.prop} style={{margin: '100px'}, {textAlign: 'center'}}>
         <p>order in the courtroom</p>
+        
+        <Dots total={3} active={0}></Dots>
         <Button chromeless onTap={() => this.setState({ step: 1 })}>Start Order</Button>
       </Block>
       </Container>  
