@@ -8,7 +8,7 @@ import reactMixin from 'react-mixin';
 class Orders extends React.Component {
 
   componentDidMount() {
-    this.firebaseRef = new Firebase('https://jumpp.firebaseio.com/business');
+    this.firebaseRef = new Firebase('https://jumpp.firebaseio.com/orders');
     this.bindAsArray(this.firebaseRef.limitToLast(25), 'businesses');
   }
 
@@ -23,7 +23,7 @@ class Orders extends React.Component {
               this.state.businesses &&
               this.state.businesses.map((obj) => {
                 return (
-                  <Button onTap={() => this.router().transitionTo('location', null, { location_id: obj['.key'] })}>
+                  <Button onTap={() => this.router().transitionTo('order', null, { order: obj['.key'] })}>
                     name: {obj.name}
                   </Button>
                 );

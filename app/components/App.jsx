@@ -8,7 +8,7 @@ class App extends React.Component {
           <p>Hello, World!</p>
 
           <Button onTap={() => this.router().transitionTo('orders')}>
-            Business View
+            Active Orders
           </Button>
 
         </View>
