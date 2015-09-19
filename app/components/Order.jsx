@@ -1,4 +1,4 @@
-import { Reapp, React, View, BackButton, Button, Modal, Container, Block, Card, Dots } from 'reapp-kit';
+import { Reapp, React, View, BackButton, Button, Modal, Container, Block, Card, Dots, DottedViewList } from 'reapp-kit';
 
 import Firebase from 'firebase';
 import ReactFireMixin from 'reactfire';
@@ -6,10 +6,11 @@ import ReactFireMixin from 'reactfire';
 import reactMixin from 'react-mixin';
 
 // var states = {
-//   {id: '0', name: 'Order Received'},
-//   {id: '1', name: 'Start Order'},
-//   {id: '2', name: 'Finish Order'}
+//   {id: '0', name: 'Start Order'},
+//   {id: '1', name: 'Finish Order'},
+//   {id: '2', name: 'Restart Order'}
 // }
+
 
 class Order extends React.Component {
 
@@ -20,6 +21,8 @@ class Order extends React.Component {
   }
 
   render() {
+
+    this.state={ step: 0 };
 
     const backButton =
       <BackButton onTap={() => this.router().transitionTo('app')} />
@@ -40,9 +43,19 @@ class Order extends React.Component {
 
       <Block {...this.prop} style={{margin: '100px'}, {textAlign: 'center'}}>
         <p>order in the courtroom</p>
-        
-        <Dots total={3} active={0}></Dots>
-        <Button chromeless onTap={() => this.setState({ step: 1 })}>Start Order</Button>
+        <div style={{overflow: 'hidden'}}>
+        <DottedViewList 
+          scrollToStep={this.state.step}>
+
+          
+            <Button chromeless onTap={() => this.setState({ step: 1 })}>Start Order</Button>
+
+            <Button chromeless onTap={() => this.setState({ step: 2 })}>Finish Order</Button>
+
+            <Button chromeless onTap={() => this.setState({ step: 0 })}>Restart Order</Button>
+
+        </DottedViewList>
+        </div>
       </Block>
       </Container>  
       </View>
