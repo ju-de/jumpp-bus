@@ -50,7 +50,7 @@ class Menu extends React.Page {
             Add
           </Button>
 
-          <Button onTap={() => this.router().transitionTo('app')}>
+          <Button onTap={() => this.router().transitionTo('landing')}>
             Done
           </Button>
 

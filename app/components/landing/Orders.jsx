@@ -21,7 +21,7 @@ class Orders extends React.Component {
     return (
       <View {...this.props}>
         <NestedViewList {...this.props.viewListProps}>
-          <View style={{textAlign: 'center'}} > 
+          <View> 
             <p>Click an order to see more details.</p>
             {
               this.state &&

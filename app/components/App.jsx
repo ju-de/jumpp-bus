@@ -18,7 +18,7 @@ class App extends React.Component {
             Get Started Now
           </Button>
 
-          <Button onTap={() => this.router().transitionTo('orders')}>
+          <Button onTap={() => this.router().transitionTo('landing')}>
             Returning User
           </Button>
 
