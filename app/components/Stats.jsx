@@ -152,6 +152,7 @@ class Stats extends React.Component {
             </div>
           </View>
           {this.props.child()}
+          {this.updateDatabase()}
         </NestedViewList>
       </View>
     );
