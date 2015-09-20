@@ -8,7 +8,6 @@ import reactMixin from 'react-mixin';
 class Orders extends React.Component {
 
   componentDidMount() {
-
     this.firebaseRef = new Firebase('https://jumpp.firebaseio.com/business/-JzZjUM48rtjWMzPBujS/orders');
     this.bindAsArray(this.firebaseRef.limitToLast(25), 'businesses');
   }

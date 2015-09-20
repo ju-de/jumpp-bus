@@ -17,6 +17,7 @@ class Register extends React.Component {
       location: location
     });
 
+    this.router().transitionTo('menu')
   }
 
   render() {

@@ -7,6 +7,8 @@ router(require,
     route('orders',
       route('order')
     ),
-    route('register')
+    route('register',
+      route('menu')
+    )
   )
 );
