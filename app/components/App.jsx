@@ -1,14 +1,25 @@
-import { Reapp, React, NestedViewList, View, Button } from 'reapp-kit';
+import { Reapp, React, NestedViewList, View, Button, Form, Input } from 'reapp-kit';
 
 class App extends React.Component {
+
+  componentDidMount() {
+
+    this.firebaseRef = new Firebase('https://jumpp.firebaseio.com/business/-JzZjUM48rtjWMzPBujS');
+
+  }
+
   render() {
     return (
       <NestedViewList {...this.props.viewListProps}>
         <View title="jumpp">
-          <p>Hello, World!</p>
 
-          <Button onTap={() => this.router().transitionTo('orders')}>
-            Active Orders
+
+          <Button onTap={() => this.router().transitionTo('register')}>
+            Get Started Now
+          </Button>
+
+          <Button onTap={() => this.router().transitionTo('landing')}>
+            Returning User
           </Button>
 
         </View>

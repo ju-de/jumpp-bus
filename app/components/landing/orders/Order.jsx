@@ -7,12 +7,14 @@ import reactMixin from 'react-mixin';
 
 var food=[ "Received", "In Process", "Ready" ];
 
-class Order extends React.Component {
+class Order extends React.Page {
 
   componentDidMount(){
-    this.locationId = this.router().getCurrentQuery().location_id;
-    this.ref = new Firebase('https://jumpp.firebaseio.com/business/'+this.locationId);
-    this.bindAsArray(this.ref, 'business');
+    this.orderId = this.router().getCurrentQuery().order_id;
+    this.ref = new Firebase('https://jumpp.firebaseio.com/business/-JzZjUM48rtjWMzPBujS/orders/'+this.orderId);
+    this.bindAsArray(this.ref, 'order');
+    // console.log(this.orderId);
+
   }
 
   state={ step: 0 };
@@ -20,10 +22,10 @@ class Order extends React.Component {
   render() {
 
     const backButton =
-      <BackButton onTap={() => this.router().transitionTo('app')} />
+      <BackButton onTap={() => this.router().transitionTo('landing')} />
 
     return (
-      <View {...this.props} title={"Order "+food[this.state.step]} titleLeft={backButton}>
+      <View {...this.props} title={"Order "} titleLeft={backButton}>
 
       <Container>
       <Block {...this.prop}>
@@ -37,7 +39,7 @@ class Order extends React.Component {
       </Block>
 
       <Block {...this.prop} style={{margin: '100px'}, {textAlign: 'center'}}>
-        <p>Status</p>
+        <p>{food[this.state.step]}</p>
         
         <Dots total={3} active={this.state.step}></Dots>
         <div style={{overflow: 'hidden'}}>
