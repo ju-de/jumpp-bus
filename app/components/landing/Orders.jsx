@@ -15,11 +15,8 @@ class Orders extends React.Component {
 
   render() {
 
-    const backButton =
-      <BackButton onTap={() => this.router().transitionTo('app')} />
-
     return (
-      <View {...this.props}>
+      <View>
         <NestedViewList {...this.props.viewListProps}>
           <View> 
             <p>Click an order to see more details.</p>
@@ -34,6 +31,11 @@ class Orders extends React.Component {
                 );
               })
             }
+
+            <Button onTap={() => this.router().transitionTo('landing')}>
+              Done
+            </Button>
+
           </View>
           
             {this.props.child()}

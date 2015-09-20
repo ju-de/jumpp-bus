@@ -1,4 +1,4 @@
-import { Reapp, React, NestedViewList, View, Button, Input } from 'reapp-kit';
+import { Reapp, React, NestedViewList, View, Button, Input, BackButton } from 'reapp-kit';
 
 class Register extends React.Component {
 
@@ -7,34 +7,41 @@ class Register extends React.Component {
     let name = this.refs.restaurant.getDOMNode().value;
     let location = this.refs.coordinates.getDOMNode().value;
 
-    console.log(name+" "+location);
+    if(name.length>0 && location.length>0){
 
-    var firebaseRef = new Firebase('https://jumpp.firebaseio.com');
-    var business = firebaseRef.child("business");
+      console.log(name+" "+location);
 
-    var session = business.push();
+      var firebaseRef = new Firebase('https://jumpp.firebaseio.com');
+      var business = firebaseRef.child("business");
 
-    session.set({
-      name: name,
-      location: location
-    });
+      var session = business.push();
 
-    console.log(session.key());
-    document.cookie = "sessionId="+session.key();
-    var sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+      session.set({
+        name: name,
+        location: location
+      });
 
-    console.log(document.cookie);
-    console.log(sessionId);
+      console.log(session.key());
+      document.cookie = "sessionId="+session.key();
+      var sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+
+      console.log(document.cookie);
+      console.log(sessionId);
+
+    }
 
     this.router().transitionTo('menu')
   }
 
 
-
   render() {
+    const backButton =
+     <BackButton onTap={() => this.router().transitionTo('app')} />
+
     return (
+
       <NestedViewList {...this.props.viewListProps}>
-        <View title="jumpp" style={{textAlign: 'center'}} >
+        <View title="jumpp" style={{textAlign: 'center'}} titleLeft={backButton}>
           <p>Join Jumpp today !! </p>
 
             <Input ref="restaurant" placeholder={"Restaurant name"} />

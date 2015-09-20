@@ -22,7 +22,7 @@ class Order extends React.Page {
   render() {
 
     const backButton =
-      <BackButton onTap={() => this.router().transitionTo('app')} />
+      <BackButton onTap={() => this.router().transitionTo('landing')} />
 
     return (
       <View {...this.props} title={"Order "} titleLeft={backButton}>

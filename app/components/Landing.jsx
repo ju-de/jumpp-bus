@@ -9,8 +9,6 @@ class Landing extends React.Page {
   }
 
   render() {
-    const backButton =
-      <BackButton onTap={() => this.router().transitionTo('app')} />
 
     return (
       <NestedViewList {...this.props.viewListProps}>
