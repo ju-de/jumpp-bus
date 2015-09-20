@@ -1,13 +1,12 @@
 import { Reapp, React, NestedViewList, View, Button, Input , Block, Container} from 'reapp-kit';
 
 class Menu extends React.Page {
-
+  
   componentDidMount(){
-    this.businessId = this.router().getCurrentQuery().business_id;
-    this.ref = new Firebase('https://jumpp.firebaseio.com/business/'+this.orderId);
+    this.ref = new Firebase('https://jumpp.firebaseio.com/business/');
     this.bindAsArray(this.ref, 'business');
 
-    console.log(businessId);
+    console.log(this.ref);
   }
 
   handleChange() {
@@ -17,7 +16,9 @@ class Menu extends React.Page {
 
     console.log(item+ " added!");
     
-    var firebaseRef = new Firebase('https://jumpp.firebaseio.com/business');
+    var sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+
+    var firebaseRef = new Firebase('https://jumpp.firebaseio.com/business/'+sessionId);
     var menuItem = firebaseRef.child("menus");
 
     menuItem.push().set({
@@ -31,8 +32,6 @@ class Menu extends React.Page {
       <NestedViewList {...this.props.viewListProps}>
         <View title="jumpp">
           <p> Make your menu </p>
-
-
 
           <Container>
             

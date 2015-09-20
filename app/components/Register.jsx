@@ -19,9 +19,11 @@ class Register extends React.Component {
       location: location
     });
 
-    document.cookie = session.key();
+    console.log(session.key());
+    document.cookie = "sessionId="+session.key();
     var sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 
+    console.log(document.cookie);
     console.log(sessionId);
 
     this.router().transitionTo('menu')
