@@ -2,22 +2,21 @@ import { Reapp, React, NestedViewList, View, Button, Input } from 'reapp-kit';
 
 class Register extends React.Component {
 
-  componentDidMount() {
-
-    this.firebaseRef = new Firebase('https://jumpp.firebaseio.com/business');
-
-          // <Button onTap={() => this.router().transitionTo('orders')}>
-  }
-
   handleChange() {
+
     let name = this.refs.restaurant.getDOMNode().value;
-    let location = this.refs.address.getDOMNode().value;
+    let location = this.refs.coordinates.getDOMNode().value;
 
     console.log(name+" "+location);
-  }
 
-  pushData() {
-    
+    var firebaseRef = new Firebase('https://jumpp.firebaseio.com');
+    var business = firebaseRef.child("business");
+
+    business.push().set({
+      name: name,
+      location: location
+    });
+
   }
 
   render() {
@@ -27,7 +26,7 @@ class Register extends React.Component {
           <p>Join Jumpp today !! </p>
 
             <Input ref="restaurant" placeholder={"Restaurant name"} />
-            <Input ref="address" placeholder={"Address"} />
+            <Input ref="coordinates" placeholder={"Location"} />
 
 
           <Button onTap={this.handleChange}>
