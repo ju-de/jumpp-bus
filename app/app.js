@@ -6,6 +6,7 @@ router(require,
   route('app', '/', { dir: '' },
     route('orders',
       route('order')
-    )
+    ),
+    route('stats')
   )
 );
