@@ -37,7 +37,7 @@ class Orders extends React.Component {
             }
           </View>
           
-          {this.props.child()}
+            {this.props.child()}
         </NestedViewList>
       </View>
     );

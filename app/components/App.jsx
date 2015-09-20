@@ -1,4 +1,4 @@
-import { Reapp, React, NestedViewList, View, Button } from 'reapp-kit';
+import { Reapp, React, NestedViewList, View, Button, Form, Input } from 'reapp-kit';
 
 class App extends React.Component {
 
@@ -12,10 +12,14 @@ class App extends React.Component {
     return (
       <NestedViewList {...this.props.viewListProps}>
         <View title="jumpp">
-          <p>Welcome back, </p>
+
+
+          <Button onTap={() => this.router().transitionTo('register')}>
+            Get Started Now
+          </Button>
 
           <Button onTap={() => this.router().transitionTo('orders')}>
-            Active Orders
+            Returning User
           </Button>
 
         </View>
