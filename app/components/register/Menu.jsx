@@ -4,8 +4,13 @@ class Menu extends React.Page {
 
   handleChange() {
 
-    let item = this.refs.item.getDOMNode().value;
-    let price = this.refs.price.getDOMNode().value;
+    let item = document.getElementById("itm").value;
+    let price = document.getElementById("val").value;
+    let img = document.getElementById("url").value;
+
+    document.getElementById("itm").value='';
+    document.getElementById("val").value='';
+    document.getElementById("url").value='';
 
     if(item.length>0 && price.length>0){
       console.log(item+ " added!");
@@ -17,9 +22,14 @@ class Menu extends React.Page {
 
       menuItem.push().set({
         name: item,
-        price: price
+        price: price,
+        img: img
       });
     }
+  }
+
+  prefill() {
+    document.getElementById("url").value = "Filled";
   }
 
   render() {
@@ -31,11 +41,15 @@ class Menu extends React.Page {
           <Container>
             
             <Block>
-            <Input ref="item" placeholder={"Item"} />
+             <Input id="itm" placeholder={"Item Name"} />
             </Block>
 
             <Block>
-            <Input ref="price" placeholder={"Price"} />
+              <Input id="val" placeholder={"Price"} />
+            </Block>
+
+            <Block>
+              <Input id="url" placeholder={"Image URL"} />
             </Block>
 
           </Container>
@@ -46,6 +60,10 @@ class Menu extends React.Page {
 
           <Button onTap={() => this.router().transitionTo('landing')}>
             Done
+          </Button>
+
+          <Button chromeless onTap={this.prefill}>
+            Prefill
           </Button>
 
         </View>

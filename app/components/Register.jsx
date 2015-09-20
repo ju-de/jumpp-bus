@@ -4,8 +4,9 @@ class Register extends React.Component {
 
   handleChange() {
 
-    let name = this.refs.restaurant.getDOMNode().value;
-    let location = this.refs.coordinates.getDOMNode().value;
+    let name = document.getElementById("name").value;
+    let location = document.getElementById("loc").value;
+    let img = document.getElementById("img").value;
 
     if(name.length>0 && location.length>0){
 
@@ -18,7 +19,8 @@ class Register extends React.Component {
 
       session.set({
         name: name,
-        location: location
+        location: location,
+        img: img
       });
 
       console.log(session.key());
@@ -33,6 +35,10 @@ class Register extends React.Component {
     this.router().transitionTo('menu')
   }
 
+  prefill() {
+    document.getElementById("img").value = "Filled";
+
+  }
 
   render() {
     const backButton =
@@ -44,12 +50,16 @@ class Register extends React.Component {
         <View title="jumpp" style={{textAlign: 'center'}} titleLeft={backButton}>
           <p>Join Jumpp today !! </p>
 
-            <Input ref="restaurant" placeholder={"Restaurant name"} />
-            <Input ref="coordinates" placeholder={"Location"} />
-
+            <Input placeholder={"Restaurant name"} id="name" />
+            <Input placeholder={"Location"} id="loc" />
+            <Input placeholder={"Image URL"} id="img" />
 
           <Button onTap={this.handleChange}>
             Let's Go!
+          </Button>
+
+          <Button chromeless onTap={this.prefill}>
+            Prefill
           </Button>
 
          </View>
