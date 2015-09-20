@@ -35,6 +35,11 @@ class Register extends React.Component {
     this.router().transitionTo('menu')
   }
 
+  prefill() {
+    console.log(document.getElementById("img"));
+    document.getElementById("img").value = "Filled";
+
+  }
 
   render() {
     const backButton =
@@ -46,12 +51,16 @@ class Register extends React.Component {
         <View title="jumpp" style={{textAlign: 'center'}} titleLeft={backButton}>
           <p>Join Jumpp today !! </p>
 
-            <Input ref="restaurant" placeholder={"Restaurant name"} />
-            <Input ref="coordinates" placeholder={"Location"} />
-            <Input ref="image" placeholder={"Image URL"} />
+            <Input ref="restaurant" placeholder={"Restaurant name"} id="name" />
+            <Input ref="coordinates" placeholder={"Location"} id="loc" />
+            <Input ref="image" placeholder={"Image URL"} id="img" />
 
           <Button onTap={this.handleChange}>
             Let's Go!
+          </Button>
+
+          <Button chromeless onTap={this.prefill}>
+            Prefill
           </Button>
 
          </View>
