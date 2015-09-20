@@ -74,6 +74,12 @@ class Stats extends React.Component {
   setRevenueGraph(){
   	var totalRevenues = this.state.totalRevenues;
     var dailyRevenues = this.state.dailyRevenues;
+    totalRevenues.sort(function(a,b){
+      return new Date(a[".key"]) - new Date(b[".key"]);
+    })
+    dailyRevenues.sort(function(a,b){
+      return new Date(a[".key"]) - new Date(b[".key"]);
+    })
     var date = [];
     var totalValues = [];
     var dailyValues = [];
@@ -86,6 +92,9 @@ class Stats extends React.Component {
 
     var myConfig = {
       "type": "area",
+      "plot":{
+        "aspect":"segmented"
+      },
       "scale-x" : {
       				values : date
       },
@@ -109,13 +118,19 @@ class Stats extends React.Component {
     var date = [];
     var totalValues = [];
 
+    totalCustomers.sort(function(a,b){
+      return new Date(a[".key"]) - new Date(b[".key"]);
+    })
+
     for (var n = 0; n < totalCustomers.length; n++){
     	date.push(totalCustomers[n][".key"]);
     	totalValues.push(totalCustomers[n][".value"]);
     }
-
     var myConfig = {
       "type": "area",
+      "plot":{
+        "aspect":"segmented"
+      },
       "scale-x" : {
       				values : date
       },
@@ -131,10 +146,7 @@ class Stats extends React.Component {
   }
 
   render() {
-
-    const backButton =
-      <BackButton onTap={() => this.router().transitionTo('app')} />
-
+    this.updateDatabase()
     return (
       <View {...this.props}>
         <NestedViewList {...this.props.viewListProps}>
@@ -152,7 +164,6 @@ class Stats extends React.Component {
             </div>
           </View>
           {this.props.child()}
-          {this.updateDatabase()}
         </NestedViewList>
       </View>
     );
