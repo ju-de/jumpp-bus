@@ -5,7 +5,7 @@ class Menu extends React.Page {
   componentDidMount(){
     this.businessId = this.router().getCurrentQuery().business_id;
     this.ref = new Firebase('https://jumpp.firebaseio.com/business/'+this.orderId);
-    this.bindAsArray(this.ref.limittoLast(25), 'business');
+    this.bindAsArray(this.ref, 'business');
 
     console.log(businessId);
   }
@@ -31,6 +31,8 @@ class Menu extends React.Page {
       <NestedViewList {...this.props.viewListProps}>
         <View title="jumpp">
           <p> Make your menu </p>
+
+
 
           <Container>
             

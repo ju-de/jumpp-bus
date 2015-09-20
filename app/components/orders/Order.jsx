@@ -15,31 +15,17 @@ class Order extends React.Page {
     this.bindAsArray(this.ref, 'order');
     // console.log(this.orderId);
 
-       // <p>{food[this.state.step]}</p>
-        
-       //  <Dots total={3} active={this.state.step}></Dots>
-       //  <div style={{overflow: 'hidden'}}>
-       //  <NestedViewList 
-       //    scrollToStep={this.state.step}>
-
-       //      // <Button chromeless onTap={() => this.setState({ step: 1 })}>Start Order</Button>
-
-       //      // <Button chromeless onTap={() => this.setState({ step: 2 })}>Finish Order</Button>
-
-       //      // <Button chromeless onTap={() => this.setState({ step: 0 })}>Restart Order</Button>
-
-       //  </NestedViewList>
-       //  </div>
   }
+
+  state={ step: 0 };
 
   render() {
 
     const backButton =
-      <BackButton onTap={() => this.router().transitionTo('orders')} />
+      <BackButton onTap={() => this.router().transitionTo('app')} />
 
     return (
       <View {...this.props} title={"Order "} titleLeft={backButton}>
-      {console.log(this.state)}
 
       <Container>
       <Block {...this.prop}>
@@ -53,13 +39,24 @@ class Order extends React.Page {
       </Block>
 
       <Block {...this.prop} style={{margin: '100px'}, {textAlign: 'center'}}>
+        <p>{food[this.state.step]}</p>
+        
+        <Dots total={3} active={this.state.step}></Dots>
+        <div style={{overflow: 'hidden'}}>
+        <NestedViewList 
+          scrollToStep={this.state.step}>
 
+            <Button chromeless onTap={() => this.setState({ step: 1 })}>Start Order</Button>
 
+            <Button chromeless onTap={() => this.setState({ step: 2 })}>Finish Order</Button>
+
+            <Button chromeless onTap={() => this.setState({ step: 0 })}>Restart Order</Button>
+
+        </NestedViewList>
+        </div>
       </Block>
       </Container>  
       </View>
-
-      // this.progress = this.state.step;
     );
   }
 }

@@ -34,7 +34,7 @@ class Register extends React.Component {
             Let's Go!
           </Button>
 
-        </View>
+         </View>
 
         {this.props.child()}
       </NestedViewList>
