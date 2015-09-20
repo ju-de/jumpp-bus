@@ -1,6 +1,20 @@
 import { Reapp, React, NestedViewList, View, Button, Input , Block, Container} from 'reapp-kit';
 
+import Firebase from 'firebase';
+import ReactFireMixin from 'reactfire';
+
+import reactMixin from 'react-mixin';
+
 class Menu extends React.Page {
+
+  componentDidMount() {
+    var sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+
+    this.firebaseRef = new Firebase('https://jumpp.firebaseio.com/business/'+sessionId);
+    this.bindAsArray(this.firebaseRef.child('menus').limitToLast(25), 'foods');
+
+
+  }
 
   handleChange() {
 
@@ -20,6 +34,7 @@ class Menu extends React.Page {
       var firebaseRef = new Firebase('https://jumpp.firebaseio.com/business/'+sessionId);
       var menuItem = firebaseRef.child("menus");
 
+
       menuItem.push().set({
         name: item,
         price: price,
@@ -32,14 +47,20 @@ class Menu extends React.Page {
     document.getElementById("url").value = "Filled";
   }
 
+  removeItem() {
+    this.firebaseRef.remove();
+  }
+
   render() {
+    console.log(this.state && this.state.foods)
+
     return (
       <NestedViewList {...this.props.viewListProps}>
         <View title="jumpp">
           <p> Make your menu </p>
 
           <Container>
-            
+
             <Block>
              <Input id="itm" placeholder={"Item Name"} />
             </Block>
@@ -66,6 +87,21 @@ class Menu extends React.Page {
             Prefill
           </Button>
 
+        <div style={{margin:'50px'}}>
+            {
+              this.state &&
+              this.state.foods &&
+              this.state.foods.map((obj) => {
+                return (
+                  <Button onTap={this.removeItem}>
+                     {obj.name} - ${obj.price}
+                  </Button>
+                );
+              })
+
+
+            }
+        </div>
         </View>
 
         {this.childRouteHandler()}
@@ -73,6 +109,8 @@ class Menu extends React.Page {
     );
   }
 }
+
+reactMixin(Menu.prototype, ReactFireMixin);
 
 export default Menu;
 
