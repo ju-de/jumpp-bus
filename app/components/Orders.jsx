@@ -31,7 +31,6 @@ class Orders extends React.Component {
                 return (
                   <Button onTap={() => this.router().transitionTo('order', null, { order_id: obj['.key'] })}>
                     Order {obj.timestamp}
-                    {console.log(obj)}
                   </Button>
                 );
               })
