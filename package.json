@@ -11,6 +11,7 @@
     "start": "reapp run"
   },
   "dependencies": {
+    "moment": "^2.10.6",
     "react": "0.13.2",
     "react-mixin": "^2.0.2",
     "reapp-kit": "^1.2.0"

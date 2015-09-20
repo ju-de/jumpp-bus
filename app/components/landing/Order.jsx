@@ -9,17 +9,25 @@ var food=[ "Received", "In Process", "Ready" ];
 
 class Order extends React.Page {
 
+  state = {
+    step: 0 
+  }
+
   componentDidMount(){
-    this.orderId = this.router().getCurrentQuery().order_id;
+    this.orderId = this.props.order['.key'];
     this.ref = new Firebase('https://jumpp.firebaseio.com/business/-JzZjUM48rtjWMzPBujS/orders/'+this.orderId);
     this.bindAsArray(this.ref, 'order');
     // console.log(this.orderId);
-
+    console.log(this.ref.child('progress'));
+    this.bindAsObject(this.ref.child('progress'), progress);
   }
 
-  state={ step: 0 };
+  componentWillUpdate(props, state) {
+    // sync wih fb
+    this.ref.child('progress').set(state.step);
+  }
 
-  render() {
+  render() {  
 
     const backButton =
       <BackButton onTap={() => this.router().transitionTo('orders')} />
@@ -28,16 +36,6 @@ class Order extends React.Page {
       <View {...this.props} title={"Order "} titleLeft={backButton}>
 
       <Container>
-      <Block {...this.prop}>
-        <p>Summary</p>
-        <div {...this.props}>
-          <Card title="Chicken dinner">呢个呢个</Card>
-          <Card title="The fuck is tofu even"> eSpicy </Card>
-          <Card title="Extra pickle">Just give them the pickle dude</Card>
-        </div>
-        <p>Total: $10.00</p>
-      </Block>
-
       <Block {...this.prop} style={{margin: '100px'}, {textAlign: 'center'}}>
         <p>{food[this.state.step]}</p>
         
@@ -54,8 +52,9 @@ class Order extends React.Page {
 
         </NestedViewList>
         </div>
+
       </Block>
-      </Container>  
+      </Container>
       </View>
     );
   }

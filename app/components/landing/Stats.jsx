@@ -13,7 +13,7 @@ var center = {
 	"margin-right":'auto'
 }
 
-class Stats extends React.Component {
+class Stats extends React.Page {
 
   componentWillMount() {
     this.ref = new Firebase('https://jumpp.firebaseio.com');
@@ -149,8 +149,6 @@ class Stats extends React.Component {
     this.updateDatabase()
     return (
       <View {...this.props}>
-        <NestedViewList {...this.props.viewListProps}>
-          <View style={{textAlign: 'center'}}> 
             <Card title="Total revenue" children = {this.calculateTotalRevenue() + " $"} />
             <Card title="Today revenue" children = {this.calculateDailyRevenue() + " $"} />
             <Card title="Total Customers" children = {this.calculateTotalCustomers()} />
@@ -162,9 +160,6 @@ class Stats extends React.Component {
           	<div style={center}>
             	<ZingChart id="myChart2" height="400" width="800" data={this.setCustomerGraph()} theme="light" />
             </div>
-          </View>
-          {this.props.child()}
-        </NestedViewList>
       </View>
     );
   }
@@ -172,4 +167,4 @@ class Stats extends React.Component {
 
 reactMixin(Stats.prototype, ReactFireMixin);
 
-export default Reapp(Stats);
+export default Stats;

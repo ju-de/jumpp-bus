@@ -5,11 +5,11 @@ router(require,
   // creates dummy parent route
   route('app', '/', { dir: '' },
     route('landing',
-      route('orders', route('order')),
+      route('orders'),
+      route('stats'),
       route('menu')
     ),
     route('register'),
-    route('stats'),
     route('login')
   )
 );

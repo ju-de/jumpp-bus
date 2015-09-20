@@ -55,7 +55,7 @@ class Menu extends React.Page {
     console.log(this.state && this.state.foods)
 
     return (
-      <View title="jumpp">
+      <View {...this.props}>
         <p> Make your menu </p>
 
          <Input id="itm" placeholder={"Item Name"} />

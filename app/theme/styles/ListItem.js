@@ -17,7 +17,7 @@ export default c => ({
     fontSize: '14px',
     lineHeight: '16px',
     height: '16px',
-    width: '220px',
+    width: '160px',
     overflow: 'hidden',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis'

@@ -1,6 +1,5 @@
 import { Reapp, React, NestedViewList, View, Button, Form, Input } from 'reapp-kit';
 
-import Logo from './shared/Logo';
 import Splash from './shared/Splash';
 
 var styles = {
@@ -30,6 +29,15 @@ var styles = {
 }
 
 class App extends React.Component {
+  state = {
+    disableScroll: false
+  }
+
+  disableScroll(val) {
+    this.setState({
+      disableScroll: val
+    });
+  }
 
   componentDidMount() {
 
@@ -39,10 +47,12 @@ class App extends React.Component {
 
   render() {
     let child = this.props.child();
-    console.log('what am i looking for...', child);
     return (
       <div style={styles.self}>
-        <NestedViewList {...this.props.viewListProps}>
+        <NestedViewList
+          {...this.props.viewListProps}
+          disableScroll={this.state.disableScroll}
+          >
           <View>
             <Splash>
 
@@ -61,8 +71,9 @@ class App extends React.Component {
             </Splash>
 
           </View>
-
-          {this.props.child()}
+          {this.props.child({
+            disableParentViewList: this.disableScroll 
+          })}
         </NestedViewList>
 
       </div>
