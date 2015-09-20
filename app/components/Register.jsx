@@ -23,8 +23,8 @@ class Register extends React.Component {
   render() {
     return (
       <NestedViewList {...this.props.viewListProps}>
-        <View title="jumpp">
-          <p></p>
+        <View title="jumpp" style={{textAlign: 'center'}} >
+          <p>Join Jumpp today !! </p>
 
             <Input ref="restaurant" placeholder={"Restaurant name"} />
             <Input ref="address" placeholder={"Address"} />
