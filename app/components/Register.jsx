@@ -12,13 +12,22 @@ class Register extends React.Component {
     var firebaseRef = new Firebase('https://jumpp.firebaseio.com');
     var business = firebaseRef.child("business");
 
-    business.push().set({
+    var session = business.push();
+
+    session.set({
       name: name,
       location: location
     });
 
+    document.cookie = session.key();
+    var sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+
+    console.log(sessionId);
+
     this.router().transitionTo('menu')
   }
+
+
 
   render() {
     return (
