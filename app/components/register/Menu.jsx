@@ -1,13 +1,6 @@
 import { Reapp, React, NestedViewList, View, Button, Input , Block, Container} from 'reapp-kit';
 
 class Menu extends React.Page {
-  
-  componentDidMount(){
-    this.ref = new Firebase('https://jumpp.firebaseio.com/business/');
-    this.bindAsArray(this.ref, 'business');
-
-    console.log(this.ref);
-  }
 
   handleChange() {
 
