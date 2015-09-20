@@ -2,6 +2,7 @@ import { theme } from 'reapp-kit';
 import iOS from 'reapp-kit/themes/ios';
 import components from './constants/components';
 import styles from './styles';
+import animations from './animations';
 
 theme({
   constants: [
@@ -13,5 +14,8 @@ theme({
     iOS.styles,
     styles
   ],
-  animations: [iOS.animations]
+  animations: [
+    iOS.animations,
+    animations
+  ]
 });

@@ -12,6 +12,7 @@ router(require,
     route('register',
         route('menu')
     ),
-    route('stats')
+    route('stats'),
+    route('login')
   )
 );
