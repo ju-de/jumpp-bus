@@ -6,6 +6,7 @@ class Menu extends React.Page {
 
     let item = this.refs.item.getDOMNode().value;
     let price = this.refs.price.getDOMNode().value;
+    let img = this.refs.image.getDOMNode().value;
 
     if(item.length>0 && price.length>0){
       console.log(item+ " added!");
@@ -17,7 +18,8 @@ class Menu extends React.Page {
 
       menuItem.push().set({
         name: item,
-        price: price
+        price: price,
+        img: img
       });
     }
   }
@@ -31,11 +33,15 @@ class Menu extends React.Page {
           <Container>
             
             <Block>
-            <Input ref="item" placeholder={"Item"} />
+             <Input ref="item" placeholder={"Item Name"} />
             </Block>
 
             <Block>
-            <Input ref="price" placeholder={"Price"} />
+              <Input ref="price" placeholder={"Price"} />
+            </Block>
+
+            <Block>
+              <Input ref="image" placeholder={"Image URL"} />
             </Block>
 
           </Container>

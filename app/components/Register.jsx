@@ -6,6 +6,7 @@ class Register extends React.Component {
 
     let name = this.refs.restaurant.getDOMNode().value;
     let location = this.refs.coordinates.getDOMNode().value;
+    let img = this.refs.image.getDOMNode().value;
 
     if(name.length>0 && location.length>0){
 
@@ -18,7 +19,8 @@ class Register extends React.Component {
 
       session.set({
         name: name,
-        location: location
+        location: location,
+        img: img
       });
 
       console.log(session.key());
@@ -46,7 +48,7 @@ class Register extends React.Component {
 
             <Input ref="restaurant" placeholder={"Restaurant name"} />
             <Input ref="coordinates" placeholder={"Location"} />
-
+            <Input ref="image" placeholder={"Image URL"} />
 
           <Button onTap={this.handleChange}>
             Let's Go!
