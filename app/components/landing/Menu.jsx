@@ -38,7 +38,7 @@ class Menu extends React.Page {
       menuItem.push().set({
         name: item,
         price: price,
-        img: img
+        mediaUrl: img
       });
     }
   }
@@ -55,57 +55,42 @@ class Menu extends React.Page {
     console.log(this.state && this.state.foods)
 
     return (
-      <NestedViewList {...this.props.viewListProps}>
-        <View title="jumpp">
-          <p> Make your menu </p>
+      <View title="jumpp">
+        <p> Make your menu </p>
 
-          <Container>
+         <Input id="itm" placeholder={"Item Name"} />
+         <Input id="val" placeholder={"Price"} />
+         <Input id="url" placeholder={"Image URL"} />
 
-            <Block>
-             <Input id="itm" placeholder={"Item Name"} />
-            </Block>
 
-            <Block>
-              <Input id="val" placeholder={"Price"} />
-            </Block>
+        <Button onTap={this.handleChange}>
+          Add
+        </Button>
 
-            <Block>
-              <Input id="url" placeholder={"Image URL"} />
-            </Block>
+        <Button onTap={() => this.router().transitionTo('landing')}>
+          Done
+        </Button>
 
-          </Container>
-
-          <Button onTap={this.handleChange}>
-            Add
-          </Button>
-
-          <Button onTap={() => this.router().transitionTo('landing')}>
-            Done
-          </Button>
-
-          <Button chromeless onTap={this.prefill}>
-            Prefill
-          </Button>
+        <Button chromeless onTap={this.prefill}>
+          Prefill
+        </Button>
 
         <div style={{margin:'50px'}}>
-            {
-              this.state &&
-              this.state.foods &&
-              this.state.foods.map((obj) => {
-                return (
-                  <Button onTap={this.removeItem}>
-                     {obj.name} - ${obj.price}
-                  </Button>
-                );
-              })
+          {
+            this.state &&
+            this.state.foods &&
+            this.state.foods.map((obj) => {
+              return (
+                <Button onTap={this.removeItem}>
+                   {obj.name} - ${obj.price}
+                </Button>
+              );
+            })
 
 
-            }
+          }
         </div>
-        </View>
-
-        {this.childRouteHandler()}
-      </NestedViewList>
+      </View>
     );
   }
 }
@@ -113,11 +98,3 @@ class Menu extends React.Page {
 reactMixin(Menu.prototype, ReactFireMixin);
 
 export default Menu;
-
-/*
- This is your root route. When you wrap it with Reapp()
- it passes your class two properties:
-
-  - viewListProps: Passes the scrollToStep to your ViewList so it animates
-  - child: The child route
-*/

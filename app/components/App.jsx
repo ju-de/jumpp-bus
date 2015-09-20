@@ -1,6 +1,7 @@
 import { Reapp, React, NestedViewList, View, Button, Form, Input } from 'reapp-kit';
 
 import Logo from './shared/Logo';
+import Splash from './shared/Splash';
 
 var styles = {
 
@@ -10,16 +11,6 @@ var styles = {
     lineHeight: '24px'
   },
 
-  scrim: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    zIndex: 2,
-    height: '200px',
-    background: 'linear-gradient(to bottom, rgba(255,255,255,1), rgba(255,255,255,0))'
-  },
-  
   welcome: {
     textAlign: 'center',
     fontStyle: 'italic',
@@ -47,23 +38,27 @@ class App extends React.Component {
   }
 
   render() {
+    let child = this.props.child();
+    console.log('what am i looking for...', child);
     return (
-      <div style = {styles.self}>
+      <div style={styles.self}>
         <NestedViewList {...this.props.viewListProps}>
-          <View title="jumpp">
+          <View>
+            <Splash>
 
+              <Button onTap={() => this.router().transitionTo('register')} filled>
+                Get Started Now
+              </Button>
 
-            <Button onTap={() => this.router().transitionTo('register')}>
-              Get Started Now
-            </Button>
+              <Button onTap={() => this.router().transitionTo('login')} filled>
+                Log in with Intuit
+              </Button>
 
-            <Button onTap={() => this.router().transitionTo('landing')}>
-              Returning User
-            </Button>
+              <Button onTap={() => this.router().transitionTo('landing')}>
+                Returning User
+              </Button>
 
-            <Button onTap={() => this.router().transitionTo('login')}>
-              Log in with Intuit
-            </Button>
+            </Splash>
 
           </View>
 
@@ -76,11 +71,3 @@ class App extends React.Component {
 }
 
 export default Reapp(App);
-
-/*
- This is your root route. When you wrap it with Reapp()
- it passes your class two properties:
-
-  - viewListProps: Passes the scrollToStep to your ViewList so it animates
-  - child: The child route
-*/

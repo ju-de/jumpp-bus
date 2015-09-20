@@ -1,12 +1,15 @@
-import { Reapp, React, NestedViewList, View, Button, Input, BackButton } from 'reapp-kit';
+import { React, NestedViewList, View, Button, Input } from 'reapp-kit';
 
-class Register extends React.Component {
+import Splash from './shared/Splash';
+
+class Register extends React.Page {
 
   handleChange() {
 
     let name = document.getElementById("name").value;
     let location = document.getElementById("loc").value;
-    let img = document.getElementById("img").value;
+    let description = document.getElementById("blurb").value;
+    let mediaUrl = document.getElementById("img").value;
 
     if(name.length>0 && location.length>0){
 
@@ -16,11 +19,11 @@ class Register extends React.Component {
       var business = firebaseRef.child("business");
 
       var session = business.push();
-
       session.set({
-        name: name,
-        location: location,
-        img: img
+        name,
+        description,
+        location,
+        mediaUrl
       });
 
       console.log(session.key());
@@ -28,54 +31,50 @@ class Register extends React.Component {
       var sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 
       console.log(document.cookie);
-      console.log(sessionId);
 
     }
 
-    this.router().transitionTo('menu')
+    this.router().transitionTo('landing')
   }
 
   prefill() {
-    document.getElementById("img").value = "Filled";
-
+    document.getElementById("name").value = "The North Hackery";
+    document.getElementById("blurb").value = "In which hackathon hackers hack the north to track their worth";
+    document.getElementById("loc").value = "43.472265,-80.544794";
+    document.getElementById("img").value = "http://2.bp.blogspot.com/-elJfQpjwufA/VVG_H0VXQWI/AAAAAAAAK5Q/I97ca1CqXrQ/s1600/stuffed-chicken4.png";
   }
 
   render() {
-    const backButton =
-     <BackButton onTap={() => this.router().transitionTo('app')} />
 
     return (
 
-      <NestedViewList {...this.props.viewListProps}>
-        <View title="jumpp" style={{textAlign: 'center'}} titleLeft={backButton}>
-          <p>Join Jumpp today !! </p>
+      <View {...this.props}>
+        <NestedViewList {...this.props.viewListProps}>
+          <View style={{textAlign: 'center'}}>
+            <Splash>
 
             <Input placeholder={"Restaurant name"} id="name" />
+            <Input placeholder={"Description"} id="blurb" />
             <Input placeholder={"Location"} id="loc" />
             <Input placeholder={"Image URL"} id="img" />
 
-          <Button onTap={this.handleChange}>
-            Let's Go!
-          </Button>
+            <Button onTap={this.handleChange}>
+              Let's Go!
+            </Button>
 
-          <Button chromeless onTap={this.prefill}>
-            Prefill
-          </Button>
+            <Button chromeless onTap={this.prefill}>
+              Prefill
+            </Button>
 
-         </View>
+            </Splash>
 
-        {this.props.child()}
-      </NestedViewList>
+           </View>
+
+          {this.childRouteHandler()}
+        </NestedViewList>
+      </View>
     );
   }
 }
 
-export default Reapp(Register);
-
-/*
- This is your root route. When you wrap it with Reapp()
- it passes your class two properties:
-
-  - viewListProps: Passes the scrollToStep to your ViewList so it animates
-  - child: The child route
-*/
+export default Register;

@@ -28,7 +28,6 @@ class Landing extends React.Page {
           </Button>
 
         </View>
-
         {this.childRouteHandler()}
       </NestedViewList>
     );

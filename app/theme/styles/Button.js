@@ -18,6 +18,11 @@ export default c => ({
 
   tapActive: {
     backgroundColor: c.viewBG,
+    color: c.secondaryColor
+  },
+
+  filled: {
+    backgroundColor: c.viewBG,
     color: c.brandColor
   },
 
