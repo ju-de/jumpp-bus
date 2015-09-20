@@ -23,6 +23,10 @@ class Landing extends React.Page {
             Edit Your Menu
           </Button>
 
+          <Button onTap={() => this.router().transitionTo('stats')}>
+            View Analytics
+          </Button>
+
         </View>
 
         {this.childRouteHandler()}
